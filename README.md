@@ -4,7 +4,7 @@ Home Assistant control of Neopower 315L all in one heatpump
 
 
 
-'''
+```
 {
   "result": {
     "properties": [
@@ -222,4 +222,4 @@ Home Assistant control of Neopower 315L all in one heatpump
   "t": REDACTED,
   "tid": "REDACTED"
 }
-'''
+```
