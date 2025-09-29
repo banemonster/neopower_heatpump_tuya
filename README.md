@@ -1,6 +1,9 @@
 # neopower_heatpump_tuya
 Home Assistant control of Neopower 315L all in one heatpump
 
+List of DP ID's below.
+Extracted from Tuya Developer Platform
+
 
 
 
