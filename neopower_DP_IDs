@@ -1,7 +1,3 @@
-DP_IDs
-
-
-'''
 {
   "result": {
     "properties": [
@@ -219,4 +215,4 @@ DP_IDs
   "t": REDACTED,
   "tid": "REDACTED"
 }
-'''
+
