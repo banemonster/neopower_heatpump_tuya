@@ -1,11 +1,14 @@
+# Intergrating a Neopower all in one heatpump 315L
+
+Add Tuya Local via HACS and setup using the Local key & IP Address.
+Protocol version should be set to 3.4
+
+
 # neopower_heatpump_tuya
 Home Assistant control of Neopower 315L all in one heatpump
 
 List of DP ID's below.
 Extracted from Tuya Developer Platform
-
-
-
 
 ```
 {
@@ -310,5 +313,116 @@ entities:
 ```
 
 		
+# modify the yaml file
+My Tuya Local detected my device as an aquatech x6 water heater. Once setup go to
+/homeassistant/custom_components/tuya_local/devices/aquatech_x6_water_heater.yaml
+and edit this file
 
 
+```
+name: Aquatech RAPID/X6
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: ECO
+                value: eco
+              - dps_val: Stand
+                value: heat_pump
+#              - dps_val: HYB
+#                value: high_demand
+              - dps_val: HYB1
+                value: performance
+              - dps_val: ELE
+                value: electric
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: false
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 75
+        readonly: false
+      - id: 7
+        type: boolean
+        name: defrosting
+      - id: 16
+        type: integer
+        name: current_temperature
+      - id: 16
+        type: integer
+        name: current_temperature        
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+      - id: 32
+        type: boolean
+        name: ele_heating_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"            
+      - id: 28
+        type: boolean
+        name: compressor_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"                 
+      - id: 7
+        type: boolean
+        name: defrost_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"             
+      - id: 24
+        type: integer
+        name: venting_temp
+      - id: 18
+        type: integer
+        name: power_consumption
+      - id: 21
+        type: integer
+        name: temp_top     
+      - id: 22
+        type: integer
+        name: temp_bottom           
+      - id: 28
+        type: boolean
+        name: four_valve_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+'''
+
+
+The additional entities like defrost state and compressor state appear under the diagnostics tab in the integration
