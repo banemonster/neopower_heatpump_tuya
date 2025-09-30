@@ -306,7 +306,7 @@ entities:
             value: "off"
           - dps_val: true
             value: "on"            
-      - id: 28
+      - id: 27
         type: boolean
         name: compressor_state
         mapping:
