@@ -1,4 +1,4 @@
-# Intergrating a Neopower all in one heatpump 315L
+# Integrating a Neopower all in one heatpump 315L to Home Assistant
 
 Add Tuya Local via HACS and setup using the Local key & IP Address.
 Protocol version should be set to 3.4
